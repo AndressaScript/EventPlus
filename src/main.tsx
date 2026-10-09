@@ -14,9 +14,15 @@ import "@fontsource/poppins/latin-500.css"
 import "@fontsource/poppins/latin-600.css"
 import "@fontsource/poppins/latin-700.css"
 
+//IMPORTA BROWSER ROUTER
+import { BrowserRouter } from 'react-router-dom'
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App /> 
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+     
     {/* ESSE APP É O COMPONENTE RENDENIZADO, ENTÃO SE DUPLICAR O ITEM CONTIFO NO APP.TSX IRÁ DUPLICAR */}
   </StrictMode>,
 )
