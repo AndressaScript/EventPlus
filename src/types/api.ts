@@ -1,4 +1,3 @@
-
 export interface TipoEvento {
     idTipoEvento: string;
     titulo: string;
@@ -9,7 +8,7 @@ export interface TipoUsuario {
     titulo: string;
 }
 
-export interface Instituicao {
+export interface instituicao {
     idInstituicao: string;
     cnpj: string;
     nomeFantasia: string;
@@ -30,10 +29,30 @@ export interface Evento {
     descricao: string;
     dataEvento: string;
     imagemUrl?: string | null;
-    idTipoEvento?: string | null;
+    idTipoEvento?:string | null;
     idInstituicao?: string | null;
     idTipoEventoNavigation?: TipoEvento | null;
-    idInstituicaoNavigation?: Instituicao | null;
+    idInstituicaoNavigation?: instituicao | null
+}
+
+export interface EventoPayload {
+    nome: string;
+    descricao: string;
+    dataEvento: string;
+    arquivoImagem?: File | null;
+    imagemUrl?: string | null;
+    idTipoEvento?: string | null;
+    idInstituicao?: string | null;
+}
+
+export interface Comentario {
+    idComentario: string;
+    descricao: string;
+    dataComentario: string;
+    exibe: boolean;
+    idEvento: string;
+    idUsuario?: string | null;
+    idUsuarioNavigation: Usuario | null;
 }
 
 export interface Presenca {
@@ -44,7 +63,7 @@ export interface Presenca {
     idEventoNavigation?: Evento | null;
 }
 
-export interface LoginPayload {
+export interface LoginPayload{
     email: string;
     senha: string;
 }
@@ -55,20 +74,22 @@ export interface LoginResponse {
     usuario: Usuario;
 }
 
+
 export interface AuthSession extends LoginResponse {
     usuario: Usuario;
 }
 
-
-export interface comentarioPayload {
-    descricao: string;
-    idEvento: string;
-    idUsuario: string | null;
+export interface UsuarioPayload{
+    nome: string;
+    email: string;
+    senha: string;
+    idTipoUsuario: string | null;
 }
 
-export interface MensagemModeracao{
-    mensagem: string; 
-    motivo?: string
+export interface ComentarioPayload {
+    descricao:string;
+    idEvento: string;
+    idUsuario: string | null;
 }
 
 export interface PresencaPayload {
@@ -77,19 +98,7 @@ export interface PresencaPayload {
     idUsuario: string | null;
 }
 
-export interface Comentario{
-    idComentario: string,
-    descricao: string, 
-    dataComentario: string,
-    exibe: boolean,
-    idEvento: string,
-    idUsuario?: string | null;
-    idUsuarioNavigation: Usuario | null;
-}
-
-export interface UsuarioPayLoad {
-    nome: string;
-    email: string;
-    senha: string;
-    idTipoUsuario: string | null;
+export interface MensagemModeracao{
+    mensagem: string;
+    motivo?: string;
 }

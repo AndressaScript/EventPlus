@@ -1,7 +1,8 @@
 import type { Usuario } from "../../types/api";
-import './ListaUsuarios.css';
-import lapis from "../../assets/lapis.svg";
-import lixeira from "../../assets/lixeira.svg";
+import "./listaUsuarios.css";
+
+import lapis from "../../assets/icons/lapis.svg";
+import lixeira from "../../assets/icons/lixeira.svg";
 
 interface ListaUsuariosProps {
     usuarios: Usuario[]

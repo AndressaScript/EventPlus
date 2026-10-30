@@ -1,8 +1,7 @@
-
-import "./CardEvento.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import imagemPadrao from "../../assets/banner-3.png";
+
+import imagemPadrao from "../../assets/banner-3.png"
+import "./CardEvento.css"
 
 interface CardEventoProps {
     id: string;
@@ -10,34 +9,33 @@ interface CardEventoProps {
     categoria?: string;
     titulo: string;
     descricao: string;
+    emEdicao?: boolean;
+    onEditar?: () => void;
+    onExcluir?: () => void;
 }
 
-function CardEvento({
-    id,
-    imagem,
-    categoria,
-    titulo,
-    descricao
-}: CardEventoProps) {
-    const [imagemAtual, setImagemAtual] = useState(imagem || imagemPadrao);
-
+function CardEvento({ id, imagem, categoria, titulo, descricao, emEdicao, onEditar, onExcluir }: CardEventoProps) {
+    const adminstravel = Boolean(onEditar || onExcluir);
     return (
         <article className="home-evento-card">
-            <img
-                src={imagemAtual}
-                alt={`Imagem do evento ${titulo}`}
-                onError={() => setImagemAtual(imagemPadrao)}
-            />
-
+            <img src={imagem || imagemPadrao} alt={`Imagem do evento ${titulo}`} />
             <span>{categoria || "Evento"}</span>
-
             <div className="home-evento-card-info">
                 <h3>{titulo}</h3>
                 <p>{descricao}</p>
-                <Link to={`/eventos/${id}`}>Ver evento</Link>
+                {adminstravel ? (
+                    <div>
+                        <Link to={`/eventos/${id}`}>Ver</Link>
+                        {emEdicao ? <p>Este evento está sendo editado.</p> : null}
+                        <button type="button" onClick={onEditar} aria-label={`Editar ${titulo}`}>Editar</button>
+                        <button type="button" onClick={onExcluir} aria-label={`Excluir ${titulo}`}>Excluir</button>
+                    </div>
+                ) : (
+                    <Link to={`/eventos/${id}`}>Ver evento</Link>
+                )}
             </div>
         </article>
-    );
+    )
 }
 
 export default CardEvento;

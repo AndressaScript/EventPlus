@@ -15,10 +15,10 @@ import {
 import { getApiErrorMessage } from "../../services/api";
 import { useAuth } from "../../context/auth";
 import imagemPadrao from "../../assets/banner-1.png";
-import relogio from "../../assets/relogio.svg";
-import predio from "../../assets/predio.svg";
-import filtro from "../../assets/filtro.svg";
-import enviar from "../../assets/enviar.svg";
+import relogio from "../../assets/icons/relogio.svg";
+import predio from "../../assets/icons/predio.svg";
+import filtro from "../../assets/icons/filtro.svg";
+import enviar from "../../assets/icons/enviar.svg";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { Botao } from "../../components/botao/Botao";
