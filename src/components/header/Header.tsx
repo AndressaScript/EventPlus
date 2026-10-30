@@ -1,8 +1,13 @@
-import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import logoEvent from "../../assets/Camada_2-2.svg"
-import "./Header.css"
-import { perfilEhAdministrador, perfilEhOrganizador, useAuth } from "../../context/auth"
+import logoEvent from "../../assets/Camada_2-2.svg";
+import "./Header.css";
+
+import {
+    perfilEhAdministrador,
+    perfilEhOrganizador,
+    useAuth
+} from "../../context/auth";
 
 function Header() {
     const { autenticado, perfil, logout } = useAuth();

@@ -1,7 +1,6 @@
+import "./CardEvento.css";
 import { Link } from "react-router-dom";
-
-import imagemPadrao from "../../assets/banner-3.png"
-import "./CardEvento.css"
+import imagemPadrao from "../../assets/banner-3.png";
 
 interface CardEventoProps {
     id: string;

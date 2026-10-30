@@ -1,10 +1,12 @@
+
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import Home from "../pages/Home/Home"
-import Eventos from "../pages/Eventos/Eventos"
+import Home from "../pages/Home/Home";
+import Eventos from "../pages/Eventos/Eventos";
 import DetalhesEvento from "../pages/DetalhesEvento/DetalhesEventos";
 import Login from "../pages/Login/Login";
 import Usuarios from "../pages/Usuarios/Usuarios";
+import TipoEvento from "../pages/TipoEvento/TipoEvento";
 import CadastroEvento from "../pages/CadastroEvento/CadastroEvento";
 import ProtectedRoute from "./ProtectedRoute";
 
