@@ -1,4 +1,4 @@
-import "./Usuarios.css";
+import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import Campo from "../../components/campo/Campo";
@@ -6,9 +6,11 @@ import { Botao } from "../../components/botao/Botao";
 import ListaUsuarios from "../../components/listaUsuarios/listaUsuarios";
 import ModalConfirmacao from "../../components/modalConfirmacao/ModalConfirmacao";
 import type { TipoUsuario, Usuario } from "../../types/api";
-import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { tipoUsuarioService, usuarioService } from "../../services/eventPlusservice";
 import { getApiErrorMessage } from "../../services/api";
+import ilustracao from "../../assets/Vector (2).png";
+
+import "./Usuarios.css";
 
 interface FormularioUsuario {
     nome: string;
@@ -33,10 +35,12 @@ function Usuarios() {
     const [carregando, setCarregando] = useState(true);
     const [enviando, setEnviando] = useState(false);
     const [mensagem, setMensagem] = useState("");
+    const [erro, setErro] = useState(false);
 
     const carregar = useCallback(async () => {
         setCarregando(true);
         setMensagem("");
+        setErro(false);
 
         try {
             const [usuariosApi, tiposApi] = await Promise.all([
@@ -53,6 +57,7 @@ function Usuarios() {
             }));
         } catch (error) {
             setMensagem(getApiErrorMessage(error));
+            setErro(true);
         } finally {
             setCarregando(false);
         }
@@ -77,12 +82,14 @@ function Usuarios() {
         });
         setIdEmEdicao(null);
         setMensagem("");
+        setErro(false);
     }
 
     async function salvar(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setEnviando(true);
         setMensagem("");
+        setErro(false);
 
         try {
             const payload = {
@@ -94,14 +101,17 @@ function Usuarios() {
 
             if (idEmEdicao) {
                 await usuarioService.atualizar(idEmEdicao, payload);
+                setMensagem("Usuário atualizado com sucesso.");
             } else {
                 await usuarioService.cadastrar(payload);
+                setMensagem("Usuário cadastrado com sucesso.");
             }
 
             limpar();
             await carregar();
         } catch (error) {
             setMensagem(getApiErrorMessage(error));
+            setErro(true);
         } finally {
             setEnviando(false);
         }
@@ -112,10 +122,11 @@ function Usuarios() {
         setFormulario({
             nome: usuario.nome,
             email: usuario.email,
-            idTipoUsuario: usuario.idTipoUsuario || "",
+            idTipoUsuario: usuario.idTipoUsuario || usuario.idTipoUsuarioNavigation?.idTipoUsuario || "",
             senha: ""
         });
         setMensagem("Informe uma nova senha para concluir a edição.");
+        setErro(false);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -123,6 +134,8 @@ function Usuarios() {
         if (!selecionado) return;
 
         setEnviando(true);
+        setMensagem("");
+        setErro(false);
 
         try {
             await usuarioService.excluir(selecionado.idUsuario);
@@ -130,9 +143,11 @@ function Usuarios() {
             if (idEmEdicao === selecionado.idUsuario) limpar();
 
             setSelecionado(null);
+            setMensagem("Usuário excluído com sucesso.");
             await carregar();
         } catch (error) {
             setMensagem(getApiErrorMessage(error));
+            setErro(true);
             setSelecionado(null);
         } finally {
             setEnviando(false);
@@ -145,13 +160,19 @@ function Usuarios() {
 
             <main className="cadastro-usuario-page">
                 <section className="cadastro-usuario-formulario-section">
-                    <h1 className="section-title">Administração de usuários</h1>
+                    <h1 className="cadastro-usuario-titulo">ADMINISTRAÇÃO DE USUÁRIOS</h1>
+                    <hr className="cadastro-usuario-linha-titulo" />
 
                     <div className="cadastro-usuario-conteudo">
-                        <img src="" alt="Ilustração da administração de usuários" />
+                        <div className="cadastro-usuario-ilustracao">
+                            <img
+                                src={ilustracao}
+                                alt="Ilustração da administração de usuários"
+                            />
+                        </div>
 
-                        <form className="cadasto-usuario-formulario" onSubmit={salvar}>
-                            <h2>{idEmEdicao ? "Editar Usuário" : "Cadastrar usuário"}</h2>
+                        <form className="cadastro-usuario-formulario" onSubmit={salvar}>
+                            <h2>{idEmEdicao ? "Editar Usuário" : "Cadastrar Usuário"}</h2>
 
                             <label className="visually-hidden" htmlFor="usuario-nome">Nome</label>
                             <Campo
@@ -172,81 +193,78 @@ function Usuarios() {
                                 type="email"
                                 value={formulario.email}
                                 onChange={atualizar}
-                                placeholder="Email"
+                                placeholder="E-mail"
                                 maxLength={100}
                                 required
                             />
 
-                            <div className="cadastro-usuario-grid">
-                                <div>
-                                    <label className="visually-hidden" htmlFor="usuario-tipo">
-                                        Tipo de usuário
-                                    </label>
-
-                                    <select
-                                        name="idTipoUsuario"
-                                        id="usuario-tipo"
-                                        value={formulario.idTipoUsuario}
-                                        onChange={atualizar}
-                                        required
+                            <label className="visually-hidden" htmlFor="usuario-tipo">Tipo de Usuário</label>
+                            <select
+                                name="idTipoUsuario"
+                                id="usuario-tipo"
+                                className="cadastro-usuario-select"
+                                value={formulario.idTipoUsuario}
+                                onChange={atualizar}
+                                required
+                            >
+                                <option value="">Selecione o Tipo de Usuário</option>
+                                {tipos.map((tipo) => (
+                                    <option
+                                        value={tipo.idTipoUsuario}
+                                        key={tipo.idTipoUsuario}
                                     >
-                                        {tipos.map((tipo) => (
-                                            <option
-                                                value={tipo.idTipoUsuario}
-                                                key={tipo.idTipoUsuario}
-                                            >
-                                                {tipo.titulo}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                                        {tipo.titulo}
+                                    </option>
+                                ))}
+                            </select>
 
-                                <div>
-                                    <label className="visually-hidden" htmlFor="usuario-senha">
-                                        Senha
-                                    </label>
+                            <label className="visually-hidden" htmlFor="usuario-senha">Senha</label>
+                            <Campo
+                                id="usuario-senha"
+                                name="senha"
+                                type="password"
+                                value={formulario.senha}
+                                onChange={atualizar}
+                                placeholder={idEmEdicao ? "Nova Senha (opcional)" : "Senha"}
+                                minLength={6}
+                                maxLength={60}
+                                required={!idEmEdicao}
+                            />
 
-                                    <Campo
-                                        id="usuario-senha"
-                                        name="senha"
-                                        type="password"
-                                        value={formulario.senha}
-                                        onChange={atualizar}
-                                        placeholder={idEmEdicao ? "Nova Senha" : "Senha"}
-                                        minLength={8}
-                                        maxLength={60}
-                                        required={!idEmEdicao}
-                                    />
-                                </div>
+                            <Botao
+                                texto={
+                                    enviando
+                                        ? "Salvando..."
+                                        : idEmEdicao
+                                            ? "Atualizar"
+                                            : "Cadastrar"
+                                }
+                                type="submit"
+                                disabled={enviando}
+                            />
 
-                                <Botao
-                                    texto={
-                                        enviando
-                                            ? "Salvando..."
-                                            : idEmEdicao
-                                                ? "Salvar"
-                                                : "Cadastrar"
+                            {idEmEdicao ? (
+                                <button
+                                    className="cadastro-usuario-cancelar"
+                                    type="button"
+                                    onClick={limpar}
+                                >
+                                    Cancelar Edição
+                                </button>
+                            ) : null}
+
+                            {mensagem ? (
+                                <p
+                                    className={
+                                        erro
+                                            ? "cadastro-usuario-mensagem cadastro-usuario-mensagem-erro"
+                                            : "cadastro-usuario-mensagem cadastro-usuario-mensagem-sucesso"
                                     }
-                                    type="submit"
-                                    disabled={enviando}
-                                />
-
-                                {idEmEdicao ? (
-                                    <button
-                                        className="cadastro-usuario-cancelar"
-                                        type="button"
-                                        onClick={limpar}
-                                    >
-                                        Cancelar Edição
-                                    </button>
-                                ) : null}
-
-                                {mensagem ? (
-                                    <p className="cadastro-usuario-mensagem" role="alert">
-                                        {mensagem}
-                                    </p>
-                                ) : null}
-                            </div>
+                                    role="status"
+                                >
+                                    {mensagem}
+                                </p>
+                            ) : null}
                         </form>
                     </div>
                 </section>
@@ -261,8 +279,9 @@ function Usuarios() {
 
                 <ModalConfirmacao
                     show={Boolean(selecionado)}
-                    titulo="Excluir usuário"
-                    mensagem={selecionado ? `Deseja excluir "${selecionado.nome}"?` : ""}
+                    titulo="Excluir Usuário"
+                    mensagem={selecionado ? `Deseja realmente excluir "${selecionado.nome}"?` : ""}
+                    textoConfirmar={enviando ? "Excluindo..." : "Excluir"}
                     textoCancelar="Cancelar"
                     onClose={() => setSelecionado(null)}
                     onConfirm={() => void excluir()}

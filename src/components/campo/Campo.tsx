@@ -1,18 +1,20 @@
-
 import type { InputHTMLAttributes } from "react";
 import "./Campo.css";
 
-interface CampoProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CampoProps extends InputHTMLAttributes<HTMLInputElement> {
+    className?: string;
     classname?: string;
 }
 
-function Campo({
+export function Campo({
     placeholder,
     type = "text",
+    className = "",
     classname = "",
     ...props
 }: CampoProps) {
-    const classes = ["campo", classname].filter(Boolean).join(" ");
+    const finalClassName = className || classname;
+    const classes = ["campo", finalClassName].filter(Boolean).join(" ");
 
     return (
         <input

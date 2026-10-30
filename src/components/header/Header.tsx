@@ -18,40 +18,44 @@ function Header() {
 
     function sair() {
         logout();
-        navigate("/Login");
+        navigate("/login");
     }
 
     return (
         <header className="header">
             <div className="header-conteudo">
-                <Link to="/home">
+                <Link to="/home" aria-label="Ir para a página inicial">
                     <img src={logoEvent} alt="Logo Event+" />
                 </Link>
 
                 <nav>
                     <NavLink to="/home">Home</NavLink>
                     <NavLink to="/eventos">Eventos</NavLink>
-                    {administrador ?
-                        <NavLink to="/usuarios">Usuarios</NavLink>
-                        : null}
-                    {organizador ?
-                        <NavLink to="/CadastroEvento">Cadastro de Eventos</NavLink>
-                        : null
-                    }
+                    {administrador ? (
+                        <>
+                            <NavLink to="/tipoevento">Tipos de Evento</NavLink>
+                            <NavLink to="/tipousuario">Tipos de Usuário</NavLink>
+                            <NavLink to="/usuarios">Usuários</NavLink>
+                        </>
+                    ) : null}
+                    {organizador ? (
+                        <NavLink to="/cadastroEvento">Cadastro de Eventos</NavLink>
+                    ) : null}
                     <Link to="/home#contato">Contatos</Link>
                 </nav>
 
-                {autenticado ?
-                    <>
-                        <Link to="/conta">Minha Conta</Link>
-                        <Link onClick={sair} to="/login">Sair</Link>
-                    </>
-                    :
-                    <Link to="/login">Entrar</Link>
-                }
+                <div className="header-acoes">
+                    {autenticado ? (
+                        <button type="button" onClick={sair} aria-label="Encerrar sessão">
+                            Sair
+                        </button>
+                    ) : (
+                        <Link to="/login">Entrar</Link>
+                    )}
+                </div>
             </div>
         </header>
-    )
+    );
 }
 
 export default Header;

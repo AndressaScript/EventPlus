@@ -12,9 +12,9 @@ import Campo from "../../components/campo/Campo";
 import { Botao } from "../../components/botao/Botao";
 import ModalConfirmacao from "../../components/modalConfirmacao/ModalConfirmacao";
 
-import lapis from "../../assets/Icons/lapis.svg";
-import lixeira from "../../assets/Icons/lixeira.svg";
-import ilustracao from "../../assets/Vector.png";
+import lapis from "../../assets/icons/lapis.svg";
+import lixeira from "../../assets/icons/lixeira.svg";
+import ilustracao from "../../assets/Vector (2).png";
 
 import { tipoUsuarioService } from "../../services/eventPlusservice";
 import { getApiErrorMessage } from "../../services/api";

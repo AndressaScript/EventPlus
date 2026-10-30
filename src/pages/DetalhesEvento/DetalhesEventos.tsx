@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import type {
@@ -394,7 +393,7 @@ function DetalhesEvento() {
 
                             <div>
                                 <img src={predio} alt="" />
-                     a           <span>
+                                <span>
                                     {evento.idInstituicaoNavigation
                                         ?.nomeFantasia || "Instituição não informada"}
                                 </span>

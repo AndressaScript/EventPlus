@@ -1,4 +1,3 @@
-
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import Home from "../pages/Home/Home";
@@ -7,6 +6,7 @@ import DetalhesEvento from "../pages/DetalhesEvento/DetalhesEventos";
 import Login from "../pages/Login/Login";
 import Usuarios from "../pages/Usuarios/Usuarios";
 import TipoEvento from "../pages/TipoEvento/TipoEvento";
+import TipoUsuario from "../pages/TipoUsuario/TipoUsuario";
 import CadastroEvento from "../pages/CadastroEvento/CadastroEvento";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -21,21 +21,45 @@ function AppRoutes() {
 
             <Route path="/login" element={<Login />} />
 
-            <Route path="/usuarios" element={
-                <ProtectedRoute role="administrador">
-                    <Usuarios />
-                </ProtectedRoute>
-            } />
+            <Route
+                path="/usuarios"
+                element={
+                    <ProtectedRoute role="administrador">
+                        <Usuarios />
+                    </ProtectedRoute>
+                }
+            />
 
-            <Route path="/cadastroEvento" element={
-                <ProtectedRoute role="organizador">
-                    <CadastroEvento />
-                </ProtectedRoute>
-            } />
+            <Route
+                path="/tipoevento"
+                element={
+                    <ProtectedRoute role="administrador">
+                        <TipoEvento />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/tipousuario"
+                element={
+                    <ProtectedRoute role="administrador">
+                        <TipoUsuario />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/cadastroEvento"
+                element={
+                    <ProtectedRoute role="organizador">
+                        <CadastroEvento />
+                    </ProtectedRoute>
+                }
+            />
 
             <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
-    )
+    );
 }
 
 export default AppRoutes;

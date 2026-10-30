@@ -24,9 +24,14 @@ function ProtectedRoute({ children, role }: ProtectedRouteProps) {
         );
     }
 
-    const autorizado = !role || (role === "administrador" && perfilEhAdministrador(perfil)) || (role === "organizador" && perfilEhOrganizador(perfil));
+    const autorizado =
+        !role ||
+        (role === "administrador" && perfilEhAdministrador(perfil)) ||
+        (role === "organizador" && perfilEhOrganizador(perfil));
 
-    if (!autorizado) return <Navigate to="/home" replace />
+    if (!autorizado) {
+        return <Navigate to="/home" replace />;
+    }
 
     return children;
 }

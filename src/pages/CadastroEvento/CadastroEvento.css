@@ -1,0 +1,282 @@
+.cadastro-evento-page {
+    width: 100%;
+}
+
+.cadastro-evento-formulario-section {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro-evento-titulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #17143f;
+    text-transform: uppercase;
+}
+
+.cadastro-evento-linha-titulo {
+    border: none;
+    border-top: 2px solid #b51d44;
+    width: 100px;
+    margin-top: 8px;
+    margin-bottom: 40px;
+}
+
+.cadastro-evento-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    gap: 40px;
+}
+
+.cadastro-evento-ilustracao {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro-evento-ilustracao img {
+    display: block;
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.cadastro-evento-formulario {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cadastro-evento-formulario h2 {
+    font-size: 1.1rem;
+    color: #17143f;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.cadastro-evento-formulario input {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #999999;
+    border-radius: 0;
+    background: transparent;
+    padding: 10px 4px;
+    outline: none;
+    box-shadow: none;
+    font-size: 0.95rem;
+}
+
+.cadastro-evento-formulario input:focus {
+    border-bottom: 1px solid #b51d44;
+}
+
+.cadastro-evento-selects {
+    display: flex;
+    gap: 12px;
+}
+
+.cadastro-evento-select {
+    flex: 1;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #999999;
+    border-radius: 0;
+    background: transparent;
+    padding: 10px 4px;
+    outline: none;
+    color: #555555;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.cadastro-evento-select:focus {
+    border-bottom: 1px solid #b51d44;
+    color: #17143f;
+}
+
+.cadastro-evento-upload-wrapper {
+    margin-top: 4px;
+}
+
+.cadastro-evento-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 1px dashed #b51d44;
+    border-radius: 6px;
+    color: #b51d44;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: rgba(181, 29, 68, 0.03);
+    transition: all 0.2s ease;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cadastro-evento-upload-label:hover {
+    background-color: rgba(181, 29, 68, 0.08);
+}
+
+.cadastro-evento-progresso-container {
+    width: 100%;
+    height: 18px;
+    background-color: #f0f0f0;
+    border-radius: 9px;
+    overflow: hidden;
+    margin: 4px 0;
+}
+
+.cadastro-evento-progresso-barra {
+    height: 100%;
+    background-color: #b51d44;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.2s ease;
+}
+
+.cadastro-evento-formulario .botao {
+    width: 100%;
+    min-height: 42px;
+    background-color: #b51d44;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    margin-top: 6px;
+}
+
+.cadastro-evento-formulario .botao:hover {
+    background-color: #a51f40;
+}
+
+.cadastro-evento-formulario .botao:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.cadastro-evento-cancelar {
+    background: transparent;
+    border: 1px solid #b51d44;
+    color: #b51d44;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.cadastro-evento-cancelar:hover {
+    background: rgba(181, 29, 68, 0.05);
+}
+
+.cadastro-evento-mensagem {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.cadastro-evento-mensagem-sucesso {
+    background-color: #e6f9ed;
+    color: #1b7a43;
+}
+
+.cadastro-evento-mensagem-erro {
+    background-color: #fde8ec;
+    color: #b51d44;
+}
+
+/* Seção da listagem de eventos */
+.cadastro-evento-lista-section {
+    background-color: #f8f8fb;
+    padding: 56px 0;
+    width: 100%;
+    border-top: 1px solid #ded9da;
+}
+
+.cadastro-evento-lista-container {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro-evento-lista-container h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #17143f;
+}
+
+.cadastro-evento-linha-lista {
+    border: none;
+    border-top: 2px solid #b51d44;
+    width: 100px;
+    margin-top: 8px;
+    margin-bottom: 36px;
+}
+
+.cadastro-evento-aviso {
+    color: #555555;
+    font-size: 1rem;
+    margin: 20px 0;
+}
+
+.cadastro-evento-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .cadastro-evento-formulario-section {
+        width: calc(100% - 32px);
+        padding: 32px 0;
+    }
+
+    .cadastro-evento-conteudo {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .cadastro-evento-ilustracao img {
+        max-width: 280px;
+    }
+
+    .cadastro-evento-formulario {
+        max-width: 100%;
+    }
+
+    .cadastro-evento-selects {
+        flex-direction: column;
+    }
+
+    .cadastro-evento-lista-container {
+        width: calc(100% - 32px);
+    }
+}

@@ -1,4 +1,3 @@
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, type FormEvent } from "react";
 import logoEvent from "../../assets/Camada_2-2.svg";
@@ -6,6 +5,7 @@ import "./Login.css";
 import { useAuth } from "../../context/auth";
 import { Botao } from "../../components/botao/Botao";
 import Campo from "../../components/campo/Campo";
+import { getApiErrorMessage } from "../../services/api";
 
 function Login() {
     const navigate = useNavigate();
@@ -35,67 +35,62 @@ function Login() {
             });
 
             const state = location.state as { from?: string } | null;
-
             navigate(state?.from || "/home", { replace: true });
-        } catch {
-            setErro("Não foi possível entrar. Verifique seu email e sua senha.");
+        } catch (error) {
+            setErro(getApiErrorMessage(error));
         } finally {
             setEnviando(false);
         }
     }
 
     return (
-        <main>
-            <img src={logoEvent} alt="EventPlus logo" />
+        <main className="login-page">
+            <div className="login-container">
+                <img className="login-logo" src={logoEvent} alt="EventPlus logo" />
 
-            <form
-                className="login-form"
-                onSubmit={entrar}
-                noValidate
-            >
-                <div>
-                    <label htmlFor="login-email">Email</label>
+                <form className="login-form" onSubmit={entrar} noValidate>
+                    <div>
+                        <label className="visually-hidden" htmlFor="login-email">Email</label>
+                        <Campo
+                            id="login-email"
+                            name="email"
+                            type="email"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                            placeholder="Email"
+                            autoComplete="email"
+                            required
+                        />
+                    </div>
 
-                    <Campo
-                        id="login-email"
-                        name="email"
-                        type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        placeholder="Digite seu email"
-                        autoComplete="email"
-                        required
+                    <div>
+                        <label className="visually-hidden" htmlFor="login-senha">Senha</label>
+                        <Campo
+                            id="login-senha"
+                            name="senha"
+                            type="password"
+                            value={senha}
+                            onChange={(event) => setSenha(event.target.value)}
+                            placeholder="Senha"
+                            autoComplete="current-password"
+                            minLength={8}
+                            required
+                        />
+                    </div>
+
+                    {erro && (
+                        <p className="login-erro" role="alert">
+                            {erro}
+                        </p>
+                    )}
+
+                    <Botao
+                        texto={enviando ? "Entrando..." : "Entrar"}
+                        type="submit"
+                        disabled={enviando}
                     />
-                </div>
-
-                <div>
-                    <label htmlFor="login-senha">Senha</label>
-
-                    <Campo
-                        id="login-senha"
-                        name="senha"
-                        type="password"
-                        value={senha}
-                        onChange={(event) => setSenha(event.target.value)}
-                        placeholder="Digite sua senha"
-                        autoComplete="current-password"
-                        minLength={8}
-                        required
-                    />
-                </div>
-
-                {erro && (
-                    <p className="login-erro" role="alert">
-                        {erro}
-                    </p>
-                )}
-
-                <Botao
-                    texto={enviando ? "Entrando..." : "Entrar"}
-                    type="submit"
-                    disabled={enviando}
-                />
-            </form>
+                </form>
+            </div>
         </main>
     );
 }

@@ -1,4 +1,3 @@
-
 import { axiosInstance } from "./api";
 
 import type {
@@ -21,6 +20,7 @@ import type {
 function eventoFormData(payload: EventoPayload) {
     const formData = new FormData();
 
+    formData.append("Nome", payload.nome.trim());
     formData.append("NomeEvento", payload.nome.trim());
     formData.append("Descricao", payload.descricao.trim());
     formData.append("DataEvento", payload.dataEvento);
@@ -121,14 +121,19 @@ export const eventoService = {
     }
 };
 
-
 export const comentarioService = {
     async listarPorEvento(idEvento: string) {
-        const { data } = await axiosInstance.get<Comentario[]>(
-            `Comentario/ListarPorEvento/${idEvento}`
-        );
-
-        return data;
+        try {
+            const { data } = await axiosInstance.get<Comentario[]>(
+                `Comentario/evento/${idEvento}`
+            );
+            return data;
+        } catch {
+            const { data } = await axiosInstance.get<Comentario[]>(
+                `Comentario/ListarPorEvento/${idEvento}`
+            );
+            return data;
+        }
     },
 
     async cadastrar(payload: ComentarioPayload) {
@@ -139,7 +144,6 @@ export const comentarioService = {
         return data;
     }
 };
-
 
 export const presencaService = {
     async listarPorUsuario(idUsuario: string) {

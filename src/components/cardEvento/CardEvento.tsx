@@ -13,28 +13,58 @@ interface CardEventoProps {
     onExcluir?: () => void;
 }
 
-function CardEvento({ id, imagem, categoria, titulo, descricao, emEdicao, onEditar, onExcluir }: CardEventoProps) {
+function CardEvento({
+    id,
+    imagem,
+    categoria,
+    titulo,
+    descricao,
+    emEdicao,
+    onEditar,
+    onExcluir
+}: CardEventoProps) {
     const adminstravel = Boolean(onEditar || onExcluir);
+
     return (
-        <article className="home-evento-card">
+        <article className={`home-evento-card ${emEdicao ? "home-evento-card-editando" : ""}`}>
             <img src={imagem || imagemPadrao} alt={`Imagem do evento ${titulo}`} />
-            <span>{categoria || "Evento"}</span>
+            <span className="home-evento-categoria">{categoria || "Evento"}</span>
             <div className="home-evento-card-info">
                 <h3>{titulo}</h3>
                 <p>{descricao}</p>
                 {adminstravel ? (
-                    <div>
-                        <Link to={`/eventos/${id}`}>Ver</Link>
-                        {emEdicao ? <p>Este evento está sendo editado.</p> : null}
-                        <button type="button" onClick={onEditar} aria-label={`Editar ${titulo}`}>Editar</button>
-                        <button type="button" onClick={onExcluir} aria-label={`Excluir ${titulo}`}>Excluir</button>
+                    <div className="home-evento-card-acoes">
+                        <Link to={`/eventos/${id}`} className="home-evento-card-link">
+                            Ver
+                        </Link>
+                        {emEdicao ? (
+                            <span className="home-evento-card-status">Editando</span>
+                        ) : null}
+                        <button
+                            type="button"
+                            className="home-evento-card-btn-editar"
+                            onClick={onEditar}
+                            aria-label={`Editar ${titulo}`}
+                        >
+                            Editar
+                        </button>
+                        <button
+                            type="button"
+                            className="home-evento-card-btn-excluir"
+                            onClick={onExcluir}
+                            aria-label={`Excluir ${titulo}`}
+                        >
+                            Excluir
+                        </button>
                     </div>
                 ) : (
-                    <Link to={`/eventos/${id}`}>Ver evento</Link>
+                    <Link to={`/eventos/${id}`} className="home-evento-card-link">
+                        Ver evento
+                    </Link>
                 )}
             </div>
         </article>
-    )
+    );
 }
 
 export default CardEvento;
