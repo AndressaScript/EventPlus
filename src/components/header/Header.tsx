@@ -46,11 +46,11 @@ function Header() {
 
                 <div className="header-acoes">
                     {autenticado ? (
-                        <button type="button" onClick={sair} aria-label="Encerrar sessão">
+                        <button type="button" className="header-btn-sair" onClick={sair} aria-label="Encerrar sessão">
                             Sair
                         </button>
                     ) : (
-                        <Link to="/login">Entrar</Link>
+                        <Link to="/login" className="header-btn-login">Entrar</Link>
                     )}
                 </div>
             </div>

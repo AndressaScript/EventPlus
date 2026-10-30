@@ -4,103 +4,186 @@
     --cor-texto: #17143f;
     --vermelho: #b51d44;
     --vermelho-escuro: #821b47;
-    --azul-claro: rgba(0,80,251,0.21);
+    --azul-claro: rgba(0, 80, 251, 0.21);
 }
 
+/* ===== SEÇÕES COMUNS ===== */
 .home-visao-container,
 .home-eventos,
-.home-contato-container{
+.home-contato-container {
     width: min(1200px, calc(100% - 48px));
     margin: 0 auto;
     padding: 64px 0;
 }
 
+/* ===== SEÇÃO VISÃO ===== */
 .home-visao {
     background: var(--vermelho);
-
 }
 
-.home-visao-container{
+.home-visao-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 40px;
 }
 
 .home-visao img {
-    max-width: 350px;
+    max-width: 380px;
+    width: 100%;
+    border-radius: 8px;
 }
 
-.home-visao-texto{
+.home-visao-texto {
     color: var(--branco);
-    max-width: 300px;
+    max-width: 340px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 16px;
 }
 
-.home-visao-texto p{
-    margin-top: 10%;
+.home-visao-texto h1 {
+    font-size: 2rem;
+    font-weight: 700;
 }
 
-.home-eventos-lista {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 5%;
-    margin-top: 32px;
+.home-visao-texto p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.95;
 }
 
+/* ===== SEÇÃO PRÓXIMOS EVENTOS ===== */
+.home-eventos {
+    padding: 64px 0;
+}
 
-.home-eventos-titulo{
+.home-eventos-titulo {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
+    margin-bottom: 40px;
 }
 
-.home-eventos-titulo hr{
-    border: 1px solid var(--vermelho);
+.home-eventos-titulo h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin-bottom: 12px;
+}
+
+.home-eventos-titulo hr {
+    border: 2px solid var(--vermelho);
     width: 20%;
     min-width: 200px;
+    border-radius: 2px;
 }
 
+.home-eventos-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 0;
+}
+
+.home-mensagem-erro {
+    color: var(--vermelho);
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+/* ===== SEÇÃO CONTATO ===== */
 .home-contato {
-    background: var(--vermelho);
+    background-color: var(--vermelho);
 }
 
-.home-contato-container{
+.home-contato-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 32px;
 }
 
 .home-contato-titulo {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
-.home-contato-titulo h2{
+.home-contato-titulo h2 {
     color: var(--branco);
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .home-contato-titulo hr {
-    border: 1px solid var(--branco);
-    min-width: 200px;
+    border: 2px solid var(--branco);
+    min-width: 150px;
+    border-radius: 2px;
 }
 
-.home-contato-conteudo{
+.home-contato-conteudo {
     display: flex;
     justify-content: space-between;
-    margin-top: 10vh;
-    width: 70%;
+    align-items: center;
+    gap: 40px;
+    width: 80%;
     color: var(--branco);
     text-align: center;
-    align-items: center;
 }
 
-.home-contato-conteudo iframe{
-    width: 50%;
-    height: 30vh;
+.home-contato-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
+.home-contato-texto p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.home-contato-conteudo iframe {
+    width: 55%;
+    height: 300px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 992px) {
+    .home-eventos-lista {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .home-visao-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .home-contato-conteudo {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .home-contato-conteudo iframe {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-eventos-lista {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .home-visao img {
+        max-width: 260px;
+    }
+}

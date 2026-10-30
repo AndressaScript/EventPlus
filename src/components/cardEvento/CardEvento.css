@@ -7,47 +7,48 @@
     --azul-claro: rgba(0, 80, 251, 0.21);
 }
 
+/* ===== CARD EVENTO ===== */
 .home-evento-card {
     border: 1px solid var(--vermelho-escuro);
     border-radius: 12px;
     overflow: hidden;
-    max-width: 260px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     background-color: var(--branco);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .home-evento-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
 }
 
 .home-evento-card.home-evento-card-editando {
     border: 2px solid var(--vermelho);
-    box-shadow: 0 0 10px rgba(181, 29, 68, 0.25);
+    box-shadow: 0 0 12px rgba(181, 29, 68, 0.3);
 }
 
 .home-evento-card img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 200px;
     object-fit: cover;
+    display: block;
 }
 
 .home-evento-card .home-evento-categoria,
 .home-evento-card > span {
     background-color: var(--azul-claro);
     border-radius: 12px;
-    padding: 2px 10px;
+    padding: 4px 14px;
     display: inline-block;
     align-self: center;
     text-align: center;
-    font-size: 0.8rem;
-    font-weight: 500;
+    font-size: 0.82rem;
+    font-weight: 600;
     color: var(--cor-texto);
-    margin: 10px 16px 4px;
+    margin: 14px 16px 6px;
 }
 
 .home-evento-card-info {
@@ -55,26 +56,28 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: space-between;
-    padding: 0 16px 16px;
+    padding: 0 20px 20px;
     flex: 1;
+    gap: 8px;
 }
 
 .home-evento-card-info h3 {
-    margin: 8px 0;
-    font-size: 1.05rem;
+    margin: 8px 0 4px;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--cor-texto);
+    line-height: 1.3;
 }
 
 .home-evento-card-info p {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: #555555;
-    margin: 4px 0 14px;
-    line-height: 1.4;
+    line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin: 0 0 8px;
 }
 
 .home-evento-card-link {
@@ -82,12 +85,15 @@
     font-weight: 700;
     text-decoration: none;
     font-size: 0.95rem;
+    margin-top: auto;
+    padding: 6px 0;
 }
 
 .home-evento-card-link:hover {
     text-decoration: underline;
 }
 
+/* ===== AÇÕES ADMIN ===== */
 .home-evento-card-acoes {
     display: flex;
     align-items: center;
@@ -95,23 +101,36 @@
     gap: 12px;
     flex-wrap: wrap;
     width: 100%;
-    padding-top: 8px;
+    padding-top: 10px;
     border-top: 1px solid #f0f0f0;
+    margin-top: auto;
 }
 
 .home-evento-card-acoes button {
     border: none;
     background: none;
-    color: var(--vermelho);
     font-weight: 700;
     font-size: 0.88rem;
     cursor: pointer;
-    padding: 4px 6px;
-    transition: opacity 0.2s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
 }
 
-.home-evento-card-acoes button:hover {
-    opacity: 0.75;
+.home-evento-card-btn-editar {
+    color: var(--vermelho);
+}
+
+.home-evento-card-btn-editar:hover {
+    background-color: rgba(181, 29, 68, 0.08);
+}
+
+.home-evento-card-btn-excluir {
+    color: #c0392b;
+}
+
+.home-evento-card-btn-excluir:hover {
+    background-color: rgba(192, 57, 43, 0.08);
 }
 
 .home-evento-card-status {
@@ -119,7 +138,7 @@
     color: #856404;
     font-size: 0.72rem;
     font-weight: 600;
-    padding: 2px 6px;
+    padding: 2px 8px;
     border-radius: 4px;
     display: inline-block;
 }

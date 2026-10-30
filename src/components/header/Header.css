@@ -4,17 +4,22 @@
     --cor-texto: #17143f;
     --vermelho: #b51d44;
     --vermelho-escuro: #821b47;
-    --azul-claro: rgba(0,80,251,0.21);
+    --azul-claro: rgba(0, 80, 251, 0.21);
 }
 
-.header{
+/* ===== HEADER ===== */
+.header {
     border-bottom: 1px solid var(--cinza-claro);
     background: var(--branco);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .header-conteudo {
     width: min(1200px, calc(100% - 48px));
-    min-height: 60px;
+    min-height: 64px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -23,22 +28,98 @@
 }
 
 .header img {
-    width: 100px;
+    width: 110px;
+    height: auto;
+    display: block;
 }
 
-.header nav{
+.header nav {
     display: flex;
+    align-items: center;
     gap: 28px;
+    flex: 1;
+    justify-content: center;
 }
 
 .header a {
     color: var(--cor-texto);
     text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
-.header button {
+.header a:hover {
+    color: var(--vermelho);
+}
+
+.header a.ativo {
+    color: var(--vermelho);
+    font-weight: 700;
+}
+
+/* Botão Sair */
+.header-btn-sair {
     border: none;
     background: none;
     color: var(--cor-texto);
     cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--cinza-claro);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+}
+
+.header-btn-sair:hover {
+    background-color: var(--vermelho);
+    color: var(--branco);
+    border-color: var(--vermelho);
+}
+
+/* Botão Login (quando não autenticado) */
+.header-btn-login {
+    border: none;
+    background: var(--vermelho);
+    color: var(--branco);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.header-btn-login:hover {
+    background: var(--vermelho-escuro);
+    color: var(--branco);
+}
+
+/* Área de ações (Sair / Entrar) */
+.header-acoes {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* NavLink ativo (React Router adiciona classe 'active') */
+.header a.active {
+    color: var(--vermelho);
+    font-weight: 700;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .header nav {
+        gap: 16px;
+    }
+
+    .header a {
+        font-size: 0.85rem;
+    }
 }

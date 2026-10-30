@@ -1,0 +1,260 @@
+.tipo-usuario-page {
+    width: 100%;
+}
+
+/* ===== SEÇÃO CADASTRO (fundo branco) ===== */
+
+.tipo-usuario-cadastro {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tipo-usuario-titulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #17143f;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.tipo-usuario-linha-titulo {
+    border: none;
+    border-top: 2px solid #b51d44;
+    width: 100px;
+    margin-top: 8px;
+    margin-bottom: 40px;
+}
+
+/* ===== ILUSTRAÇÃO + FORMULÁRIO ===== */
+
+.tipo-usuario-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    gap: 40px;
+}
+
+.tipo-usuario-ilustracao {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tipo-usuario-ilustracao img {
+    display: block;
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.tipo-usuario-formulario {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== CAMPOS DO FORMULÁRIO ===== */
+
+.tipo-usuario-formulario input {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #999999;
+    border-radius: 0;
+    background: transparent;
+    padding: 10px 4px;
+    outline: none;
+    box-shadow: none;
+    font-size: 0.95rem;
+}
+
+.tipo-usuario-formulario input:focus {
+    border-bottom: 1px solid #b51d44;
+}
+
+/* ===== BOTÃO CADASTRAR ===== */
+
+.tipo-usuario-formulario .botao,
+.tipo-usuario-btn-cadastrar {
+    width: 100%;
+    min-height: 42px;
+    background-color: #b51d44;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.tipo-usuario-formulario .botao:hover,
+.tipo-usuario-btn-cadastrar:hover {
+    background-color: #a51f40;
+}
+
+.tipo-usuario-formulario .botao:disabled,
+.tipo-usuario-btn-cadastrar:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.tipo-usuario-cancelar {
+    background: transparent;
+    border: 1px solid #b51d44;
+    color: #b51d44;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.tipo-usuario-cancelar:hover {
+    background-color: rgba(181, 29, 68, 0.06);
+}
+
+/* Mensagem de feedback */
+.tipo-usuario-formulario p[role="alert"] {
+    font-size: 0.88rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #fde8ec;
+    color: #b51d44;
+    text-align: center;
+}
+
+/* ===== SEÇÃO LISTA (fundo vermelho escuro) ===== */
+
+.tipo-usuario-lista-section {
+    background-color: #b51d44;
+    color: #ffffff;
+    padding: 48px 0;
+    width: 100%;
+}
+
+.tipo-usuario-lista-container {
+    width: min(1000px, calc(100% - 48px));
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tipo-usuario-lista-container h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center;
+}
+
+.tipo-usuario-linha-lista {
+    border: none;
+    border-top: 2px solid #ffffff;
+    width: 100px;
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
+/* ===== TABELA ===== */
+
+.tipo-usuario-tabela {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    color: #ffffff;
+}
+
+.tipo-usuario-tabela th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.tipo-usuario-tabela td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    vertical-align: middle;
+}
+
+/* Coluna Título ocupa maior parte */
+.tipo-usuario-tabela th:first-child,
+.tipo-usuario-tabela td:first-child {
+    width: 65%;
+    text-align: left;
+}
+
+/* Colunas Editar e Deletar */
+.tipo-usuario-tabela th:nth-child(2),
+.tipo-usuario-tabela td:nth-child(2),
+.tipo-usuario-tabela th:nth-child(3),
+.tipo-usuario-tabela td:nth-child(3) {
+    width: 17.5%;
+    text-align: center;
+}
+
+/* Botões de ação */
+.tipo-usuario-tabela button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+}
+
+.tipo-usuario-tabela button:hover {
+    opacity: 0.7;
+}
+
+.tipo-usuario-tabela button img {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+    display: block;
+}
+
+/* ===== RESPONSIVO ===== */
+
+@media (max-width: 650px) {
+    .tipo-usuario-cadastro {
+        width: calc(100% - 32px);
+        padding: 32px 0;
+    }
+
+    .tipo-usuario-conteudo {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .tipo-usuario-ilustracao img {
+        max-width: 280px;
+    }
+
+    .tipo-usuario-formulario {
+        max-width: 100%;
+    }
+
+    .tipo-usuario-lista-container {
+        width: calc(100% - 32px);
+        overflow-x: auto;
+    }
+
+    .tipo-usuario-tabela {
+        min-width: 420px;
+    }
+}

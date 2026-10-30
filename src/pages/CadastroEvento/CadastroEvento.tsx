@@ -19,7 +19,7 @@ import Campo from "../../components/campo/Campo";
 import { Botao } from "../../components/botao/Botao";
 import CardEvento from "../../components/cardEvento/CardEvento";
 import ModalConfirmacao from "../../components/modalConfirmacao/ModalConfirmacao";
-import ilustracao from "../../assets/Vector (2).png";
+import ilustracao from "../../assets/ilustracao-cadastro.png";
 
 import "./CadastroEvento.css";
 

@@ -1,49 +1,74 @@
+:root {
+    --cinza-claro: #ded9da;
+    --branco: #ffffff;
+    --cor-texto: #17143f;
+    --vermelho: #b51d44;
+    --vermelho-escuro: #821b47;
+    --azul-claro: rgba(0, 80, 251, 0.21);
+}
+
+/* ===== CATÁLOGO DE EVENTOS ===== */
+.eventos-container {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 40px 0 80px;
+}
+
 .eventos-titulo {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-top: 20px;
-    font-size: 25px;
+    margin-top: 32px;
+    margin-bottom: 40px;
+}
+
+.eventos-titulo h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin-bottom: 12px;
 }
 
 .eventos-titulo hr {
-    border: 1px solid var(--vermelho);
+    border: 2px solid var(--vermelho);
     width: 15%;
     min-width: 200px;
+    border-radius: 2px;
 }
 
 .eventos-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-    justify-items: center;
     align-items: stretch;
-    margin-top: 40px;
 }
 
 .home-evento-card-info a {
     color: var(--vermelho);
-    font-size: 17px;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     text-decoration: none;
     margin-top: auto;
     cursor: pointer;
+    padding: 6px 0;
 }
 
 .home-evento-card-info a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+/* ===== RESPONSIVO ===== */
+@media (max-width: 992px) {
     .eventos-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 24px;
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
     .eventos-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
